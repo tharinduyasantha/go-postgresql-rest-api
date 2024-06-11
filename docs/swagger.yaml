@@ -2,20 +2,18 @@ basePath: /
 definitions:
   models.User:
     properties:
-      created_at:
-        type: string
-      deleted_at:
-        type: string
       email:
         type: string
       id:
         type: integer
       name:
-        type: string
-      updated_at:
+        description: |-
+          CreatedAt time.Time  `json:"created_at"`
+          UpdatedAt time.Time  `json:"updated_at"`
+          DeletedAt *time.Time `json:"deleted_at,omitempty"`
         type: string
     type: object
-host: localhost:8080
+host: localhost:8081
 info:
   contact: {}
   description: This is a sample server for a REST API in Go.
@@ -23,22 +21,6 @@ info:
   version: "1.0"
 paths:
   /users:
-    get:
-      consumes:
-      - application/json
-      description: Get details of all users
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            items:
-              $ref: '#/definitions/models.User'
-            type: array
-      summary: Get all users
-      tags:
-      - users
     post:
       consumes:
       - application/json
@@ -127,6 +109,23 @@ paths:
           schema:
             $ref: '#/definitions/models.User'
       summary: Update a user
+      tags:
+      - users
+  /users/all:
+    get:
+      consumes:
+      - application/json
+      description: Get details of all users
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.User'
+            type: array
+      summary: Get all users
       tags:
       - users
 swagger: "2.0"

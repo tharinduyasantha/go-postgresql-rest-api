@@ -15,7 +15,7 @@ import (
 // @Accept  json
 // @Produce  json
 // @Success 200 {array} models.User
-// @Router /users [get]
+// @Router /users/all [get]
 func GetUsers(c *gin.Context) {
 	var users []models.User
 	config.DB.Find(&users)
